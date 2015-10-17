@@ -1,0 +1,13 @@
+shellinabox:
+        image: tiborvass/shellinabox
+        container_name: shellinabox
+        ports:
+                - "4200"
+        links:
+                - sshd
+        entrypoint: ["sh", "-c", "/shellinabox/shellinaboxd --service /:SSH:${SSHD_PORT_22_TCP_ADDR}"]
+sshd:
+        image: rastasheep/ubuntu-sshd:14.04
+        container_name: sshd
+        expose:
+                - "22"
